@@ -1,20 +1,66 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-
-
    <!-- record es registro en la base de datos -->
     <record model="ir.ui.view" id="manage.task_list">
       <field name="name">manage task list</field>
       <field name="model">manage.task</field>
       <field name="arch" type="xml">
+      
        <!-- aca es la tabla index de siempre  -->
         <tree>
+          <field name="code"/>
           <field name="name"/>
-         
+          <field name="description"/>
+          
         </tree>
       </field>
     </record>
+
+
+
+
+   <!--  <record model="ir.ui.view" id="manage.task_form">
+      <field name="name">manage project form</field>
+      <field name="model">manage.project</field>
+      <field name="arch" type="xml">
+        aca es la tabla index de siempre  
+        <form>
+          <group>
+             <field name="name"/>
+             <field name="description"/>
+             
+             <field name="histories"/>
+             
+          </group>
+         
+        </form>
+      </field>
+    </record>
+     
+
+      <record model="ir.ui.view" id="manage.task_form">
+      <field name="name">manage project history</field>
+      <field name="model">manage.history</field>
+      <field name="arch" type="xml">
+      
+        <form>
+          <group>
+             <field name="name"/>
+             <field name="project"/>
+             <field name="description"/>
+              <field name="tasks"/>
+             
+          </group>
+         
+        </form>
+      </field>
+    </record> -->
+
+
+
+
+
 
       <!-- formulario de registro --> 
     <record model="ir.ui.view" id="manage.task_form">
@@ -26,26 +72,38 @@
           <group>
              <field name="name"/>
              <field name="description"/>
-             <field name="creation_date"/>
+             
              <field name="start_date"/>
              <field name="end_date"/>
              <field name="ispaused"/>
-
+             <field name="sprint"/>
+             <field name="technologies"/>
+             
           </group>
          
         </form>
       </field>
     </record>
-
-
-
-    <!-- actions opening views on models -->
+    <!-- el menu desplegable de la barra de navegacion -->
 
     <record model="ir.actions.act_window" id="manage.action_task_window">
       <field name="name">manage task window</field>
       <field name="res_model">manage.task</field>
       <field name="view_mode">tree,form</field>
     </record>
+
+    <record model="ir.actions.act_window" id="manage.action_sprint_window">
+      <field name="name">manage sprint window</field>
+      <field name="res_model">manage.sprint</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="manage.action_technology_window">
+      <field name="name">manage technologies window</field>
+      <field name="res_model">manage.technology</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+     
 
 
     <!-- server action to the one above -->
@@ -79,6 +137,10 @@
               action="manage.action_task_window"/>
     <!-- <menuitem name="Server to list" id="manage" parent="manage.menu_2"
               action="manage.action_server"/> -->
+     <menuitem name="Sprint" id="manage.menu_1_sprint_list" parent="manage.menu_1"
+              action="manage.action_sprint_window"/>
 
+     <menuitem name="technologies" id="manage.menu_1_technology_list" parent="manage.menu_1"
+              action="manage.action_technology_window"/>         
   </data>
 </odoo>
